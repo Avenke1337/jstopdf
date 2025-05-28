@@ -1,0 +1,48 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form input[type="text"], form input[type='date'] {
+    border-radius: 25px;
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+form select {
+    border-radius: 25px;
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+}
+
+form select:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+form input:hover {
+    background-color: #cccccc80;
+}
+
+button {
+    border-radius: 25px;
+    border: 2px solid #3f9ace;
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+    background-color: skyblue;
+}
+

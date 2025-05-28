@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+    <h1>Rekrutacja online</h1>
+    <h3>Wypelnij wniosek rekrutacyjny</h3>
+
+    <form>
+        <label for="plec">Plec:</label><br>
+        <input type="radio" id="kobieta" name="plec" value="kobieta">
+        <label for="kobieta">Kobieta</label>
+        <input type="radio" id="mezczyzna" name="plec" value="mezczyzna">
+        <label for="mezczyzna">Mezczyzna</label>
+        <input type="radio" id="Inne" name="plec" value="Inne">
+        <label for="mezczyzna">Inne</label><br>
+
+        <label for="imie">Imie:</label><br>
+        <input type="text" id="imie" name="imie"><br>
+
+        <label for="nazwisko">Nazwisko:</label><br>
+        <input type="text" id="nazwisko" name="nazwisko"><br>
+
+        <label for="telefon">Telefon:</label><br>
+        <input type="text" id="telefon" name="telefon"><br>
+
+        <label for="email">Adres email:</label><br>
+        <input type="text" id="email" name="email"><br>
+
+        <label for="dataurodzenia">Data urodzenia:</label><br>
+        <input type="date" id="data" name="dataurodzenia"><br>
+
+        <label for="pesel">PESEL:</label><br>
+        <input type="text" id="pesel" name="pesel"><br>
+
+        <label for="adres">Adres zamieszkania:</label><br>
+        <input type="text" id="adres" name="adres"><br>
+
+        <label for="kodpocztowy">Kod pocztowy:</label><br>
+        <input type="text" id="kodpocztowy" name="kodpocztowy"><br>
+
+        <label for="miasto">Miasto:</label><br>
+        <input type="text" id="miasto" name="miasto"><br>
+
+        <label for="zawod">Zawod:</label><br>
+        <select id="zawod">
+            <option value="Wybierz zawod" selected disabled>Wybierz zawod</option>
+            <option value="1">Technik masazysta</option>
+            <option value="2">Technik fizjoterapeuta</option>
+        </select><br>
+
+        <button type="submit" onclick="generatePDF()">Wyslij wniosek</button>
+    </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <script>
+        function generatePDF() {
+    const { jsPDF } = window.jspdf;
+
+    let plec = document.querySelector('input[name="plec"]:checked').value;
+    let imie = document.getElementById('imie').value;
+    let nazwisko = document.getElementById('nazwisko').value;
+    let telefon = document.getElementById('telefon').value;
+    let email = document.getElementById('email').value;
+    let dataurodzenia = document.getElementById('data').value;
+    let pesel = document.getElementById('pesel').value;
+    let adres = document.getElementById('adres').value;
+    let kodpocztowy = document.getElementById('kodpocztowy').value;
+    let miasto = document.getElementById('miasto').value;
+    
+    function zawodValue() {
+        let selectedValue = document.getElementById('zawod').value;
+        let zawodText = '';
+
+        if (selectedValue == 1) {
+            zawodText = 'Technik masazysta';
+        } else if (selectedValue == 2) {
+            zawodText = 'Technik fizjoterapeuta';
+        }
+
+        return zawodText;
+        }
+    
+    let zawod = zawodValue();
+    
+
+    const today = new Date();
+    const date1 = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+
+    let doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+
+
+    doc.addImage('PSM_SVG.jpg', 'jpg', 10, 10, 30, 30);
+
+    doc.setFont('helvetica', 'bold');
+    doc.text(140, 40, 'Data wygenerowania:');
+    doc.setFont('helvetica', 'normal');
+    doc.text(140, 50, date1);
+
+
+    function centerText(text, y) {
+        const textWidth = doc.getTextWidth(text);
+        const x = (pageWidth - textWidth) / 2;
+        doc.text(x, y, text);
+    }
+
+    let y = 70;
+    const lineHeight = 10;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    centerText('PODANIE O PRZYJECIE DO SZKOLY POLICEALNEJ', y); y += lineHeight;
+    doc.setFontSize(16);
+    centerText('Na zawod: ' + zawod, y); y += lineHeight;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(12);
+    centerText('Plec: ' + plec, y); y += lineHeight;
+    centerText('Imie: ' + imie, y); y += lineHeight;
+    centerText('Nazwisko: ' + nazwisko, y); y += lineHeight;
+    centerText('Telefon: ' + telefon, y); y += lineHeight;
+
+    centerText('Email: ' + email, y); y += lineHeight;
+    centerText('Data urodzenia: ' + dataurodzenia, y); y += lineHeight;
+    centerText('PESEL: ' + pesel, y); y += lineHeight;
+    centerText('Adres zamieszkania: ' + adres, y); y += lineHeight;
+    centerText('Kod pocztowy: ' + kodpocztowy, y); y += lineHeight;
+    centerText('Miasto: ' + miasto, y); y += lineHeight;
+
+    doc.save('form-data.pdf');
+}
+
+    </script>
+</body>
+</html>
