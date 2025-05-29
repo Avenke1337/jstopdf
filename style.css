@@ -47,6 +47,12 @@ button {
   margin: 5px;
   width: 107%;
   background-color: skyblue;
+  transition: box-shadow 0.3s ease;
+}
+
+button:hover {
+  box-shadow: 0 0 10px 3px #3f9ace;
+  cursor: pointer;
 }
 
 h1 {
@@ -82,8 +88,52 @@ h3 {
     margin-bottom: 50px;
 }
 
+
+form input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  margin: 0 8px 0 0;
+  vertical-align: middle;
+  transition: border-color 0.3s ease;
+  background-color: white;
+}
+
+
+form input[type="radio"]:hover {
+  border-color: #007BFF;
+}
+
+
+form input[type="radio"]:focus {
+  outline: none;
+  box-shadow: 0 0 3px 2px #007BFFaa;
+}
+
+
 form input[type="radio"]:checked {
-  accent-color: #007BFF;
+  border-color: #007BFF;
+  background-color: #007BFF;
+}
+
+
+form input[type="radio"]:checked::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .psm-logo {
@@ -104,3 +154,5 @@ img {
   left: 0;
   margin: 10px;
 }
+
+
