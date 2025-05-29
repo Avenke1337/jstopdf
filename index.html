@@ -5,61 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
     <h1>Rekrutacja online</h1>
     <h3>Wypelnij wniosek rekrutacyjny</h3>
-
+    <img src="PSM_SVG.jpg" alt="logo">
     <form>
-        <label for="plec">Plec:</label><br>
+        <label for="plec">Plec</label><br>
         <input type="radio" id="kobieta" name="plec" value="kobieta">
-        <label for="kobieta">Kobieta</label>
+        <label class="plec" for="kobieta">Kobieta</label>
         <input type="radio" id="mezczyzna" name="plec" value="mezczyzna">
-        <label for="mezczyzna">Mezczyzna</label>
+        <label class="plec" for="mezczyzna">Mezczyzna</label>
         <input type="radio" id="Inne" name="plec" value="Inne">
-        <label for="mezczyzna">Inne</label><br>
+        <label class="plec" for="inne">Inne</label><br>
 
-        <label for="imie">Imie:</label><br>
+        <label for="imie">Imie</label><br>
         <input type="text" id="imie" name="imie"><br>
 
-        <label for="nazwisko">Nazwisko:</label><br>
+        <label for="nazwisko">Nazwisko</label><br>
         <input type="text" id="nazwisko" name="nazwisko"><br>
 
-        <label for="telefon">Telefon:</label><br>
+        <label for="telefon">Telefon</label><br>
         <input type="text" id="telefon" name="telefon"><br>
 
-        <label for="email">Adres email:</label><br>
+        <label for="email">Adres email</label><br>
         <input type="text" id="email" name="email"><br>
 
-        <label for="dataurodzenia">Data urodzenia:</label><br>
+        <label for="dataurodzenia">Data urodzenia</label><br>
         <input type="date" id="data" name="dataurodzenia"><br>
 
-        <label for="pesel">PESEL:</label><br>
+        <label for="pesel">PESEL</label><br>
         <input type="text" id="pesel" name="pesel"><br>
 
-        <label for="adres">Adres zamieszkania:</label><br>
+        <label for="adres">Adres zamieszkania</label><br>
         <input type="text" id="adres" name="adres"><br>
 
-        <label for="kodpocztowy">Kod pocztowy:</label><br>
+        <label for="kodpocztowy">Kod pocztowy</label><br>
         <input type="text" id="kodpocztowy" name="kodpocztowy"><br>
 
-        <label for="miasto">Miasto:</label><br>
+        <label for="miasto">Miasto</label><br>
         <input type="text" id="miasto" name="miasto"><br>
 
-        <label for="zawod">Zawod:</label><br>
+        <label for="zawod">Zawod</label><br>
         <select id="zawod">
             <option value="Wybierz zawod" selected disabled>Wybierz zawod</option>
             <option value="1">Technik masazysta</option>
             <option value="2">Technik fizjoterapeuta</option>
         </select><br>
 
-        <button type="submit" onclick="generatePDF()">Wyslij wniosek</button>
+        <button type="button" onclick="handleForm()">Wyslij wniosek</button>
     </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
     <script>
-        function generatePDF() {
+        function handleForm(){
+            function formValidation(){
+                
+                
+            let imie = document.getElementById('imie').value;
+            let nazwisko = document.getElementById('nazwisko').value;
+            let telefon = document.getElementById('telefon').value;
+            let email = document.getElementById('email').value;
+            let dataurodzenia = document.getElementById('data').value;
+            let pesel = document.getElementById('pesel').value;
+            let adres = document.getElementById('adres').value;
+            let kodpocztowy = document.getElementById('kodpocztowy').value;
+            let miasto = document.getElementById('miasto').value;
+            let zawod = document.getElementById('zawod').value;
+
+            if(imie == "" || nazwisko == "" || telefon == "" || email == "" || dataurodzenia == "" || pesel == "" || adres == "" || kodpocztowy == "" || miasto == "" || zawod == "Wybierz zawod") {
+                alert("Uzupełnij wszystkie dane");
+                return false;
+            }
+            let plec = document.querySelector('input[name="plec"]:checked');
+            if (!plec) {
+                alert("Wybierz płeć");
+                return false;
+            }
+
+            
+        
+            let regexpesel = /^[0-9]{11}$/;
+            if(!regexpesel.test(pesel)){
+            alert("Niepoprawny numer PESEL");
+            return false;
+            }
+            let regexemail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if(!regexemail.test(email)){
+            alert("Niepoprawny adres email");
+            return false;
+            }
+            let regexkodpocztowy = /^[0-9]{2}-[0-9]{3}$/;
+            if(!regexkodpocztowy.test(kodpocztowy)){
+            alert("Niepoprawny kod pocztowy");
+            return false;
+        }
+        return true;
+        }
+    
+    function generatePDF() {
     const { jsPDF } = window.jspdf;
 
     let plec = document.querySelector('input[name="plec"]:checked').value;
@@ -134,6 +182,18 @@
 
     doc.save('form-data.pdf');
 }
+    if(formValidation() == true){
+    generatePDF();
+}
+    }
+   
+
+
+        
+
+
+        
+
 
     </script>
 </body>

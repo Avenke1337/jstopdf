@@ -1,48 +1,106 @@
+* {
+  font-family: "Martian Mono", monospace;
+}
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
 }
 
 form input[type="text"], form input[type='date'] {
-    border-radius: 25px;
-    border: 2px solid #ccc;
-    padding: 10px;
-    margin: 5px;
-    width: 100%;
+  border-radius: 25px;
+  border: 2px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+  width: 100%;
 }
 
 form input:focus {
-    outline: none;
-    border-color: #007BFF;
+  outline: none;
+  border-color: #007BFF;
 }
 
 form select {
-    border-radius: 25px;
-    border: 2px solid #ccc;
-    padding: 10px;
-    margin: 5px;
-    width: 100%;
+  border-radius: 25px;
+  border: 2px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+  width: 107%;
 }
 
 form select:focus {
-    outline: none;
-    border-color: #007BFF;
+  outline: none;
+  border-color: #007BFF;
 }
 
 form input:hover {
-    background-color: #cccccc80;
+  background-color: #cccccc80;
 }
 
 button {
-    border-radius: 25px;
-    border: 2px solid #3f9ace;
-    padding: 10px;
-    margin: 5px;
-    width: 100%;
-    background-color: skyblue;
+  border-radius: 25px;
+  border: 2px solid #3f9ace;
+  padding: 10px;
+  margin: 5px;
+  width: 107%;
+  background-color: skyblue;
 }
 
+h1 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 30px;
+  margin-bottom: 60px;
+}
+
+label:not(.plec) {
+  display: block;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+input[type="text"], input[type="date"], select {
+  display: block;
+  
+}
+
+label[for="imie"] {
+  margin-top: 30px;
+}
+
+h1, h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+h3 {
+    margin-bottom: 50px;
+}
+
+form input[type="radio"]:checked {
+  accent-color: #007BFF;
+}
+
+.psm-logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+img {
+  width: 120px;
+  height: 120px;
+}
+
+img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 10px;
+}
