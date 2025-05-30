@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang=pl">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -15,13 +15,15 @@
     <h3>Wypelnij wniosek rekrutacyjny</h3>
     <img src="PSM_SVG.jpg" alt="logo">
     <form>
-        <label for="plec">Plec</label><br>
+        <label>Plec</label><br>
+        <div class="radio">
         <input type="radio" id="kobieta" name="plec" value="kobieta">
         <label class="plec" for="kobieta">Kobieta</label>
         <input type="radio" id="mezczyzna" name="plec" value="mezczyzna">
         <label class="plec" for="mezczyzna">Mezczyzna</label>
         <input type="radio" id="Inne" name="plec" value="Inne">
-        <label class="plec" for="inne">Inne</label><br>
+        <label class="plec" for="Inne">Inne</label><br>
+        </div>
 
         <label for="imie">Imie</label><br>
         <input type="text" id="imie" name="imie"><br>
@@ -35,7 +37,7 @@
         <label for="email">Adres email</label><br>
         <input type="text" id="email" name="email"><br>
 
-        <label for="dataurodzenia">Data urodzenia</label><br>
+        <label for="data">Data urodzenia</label><br>
         <input type="date" id="data" name="dataurodzenia"><br>
 
         <label for="pesel">PESEL</label><br>

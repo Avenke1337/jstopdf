@@ -16,7 +16,7 @@ form input[type="text"], form input[type='date'] {
   border: 2px solid #ccc;
   padding: 10px;
   margin: 5px;
-  width: 100%;
+  width: 93.5%;
 }
 
 form input:focus {
@@ -29,12 +29,17 @@ form select {
   border: 2px solid #ccc;
   padding: 10px;
   margin: 5px;
-  width: 107%;
+  width: 100%;
+  appearance: none;
 }
 
 form select:focus {
   outline: none;
   border-color: #007BFF;
+}
+
+form select:hover {
+  background-color: #cccccc80;
 }
 
 form input:hover {
@@ -46,7 +51,7 @@ button {
   border: 2px solid #3f9ace;
   padding: 10px;
   margin: 5px;
-  width: 107%;
+  width: 100%;
   background-color: skyblue;
   transition: box-shadow 0.3s ease;
 }
@@ -58,11 +63,13 @@ button:hover {
 
 h1 {
   font-size: 50px;
+  text-shadow: 2px 2px 4px rgba(0, 123, 255, 0.5);
 }
 
 h3 {
   font-size: 30px;
   margin-bottom: 60px;
+  text-shadow: 2px 2px 4px rgba(0, 123, 255, 0.5);
 }
 
 label:not(.plec) {
@@ -101,9 +108,9 @@ form input[type="radio"] {
   cursor: pointer;
   position: relative;
   margin: 0 8px 0 0;
-  vertical-align: middle;
   transition: border-color 0.3s ease;
   background-color: white;
+  vertical-align: middle;
 }
 
 
@@ -157,3 +164,23 @@ img {
 }
 
 
+form {
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border-radius: 15px;
+  background-color: #fff;
+}
+
+.radio {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+
+}
+
+label {
+  pointer-events: none;
+}
