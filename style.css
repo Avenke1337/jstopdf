@@ -184,3 +184,8 @@ form {
 label {
   pointer-events: none;
 }
+
+.error {
+    border: 1px solid red;
+    background-color: #ffecec;
+}
