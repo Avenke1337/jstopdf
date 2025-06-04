@@ -77,66 +77,39 @@ function formValidation() {
 
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
-  const lineHeight = 10;
-  let y = 20;
-
-  function centerText(text, y) {
-        const textWidth = doc.getTextWidth(text);
-        const x = (pageWidth - textWidth) / 2;
-        doc.text(x, y, text);
-    }
+  const pageHeight = doc.internal.pageSize.getHeight();
 
 
-  doc.addImage('PSM_SVG.jpg', 'jpg', 20, 15, 25, 25);
-  doc.setFontSize(10);
-  doc.text(`Data wygenerowania: ${date1}`, pageWidth - 70, 30);
 
+doc.addImage('template.jpg', 'JPEG', 0, 0, pageWidth, pageHeight);
+doc.addImage('PSM_SVG.jpg', 'jpg', 10, 3, 20, 20);
 
-  doc.addFileToVFS("Roboto-Regular.ttf", robotobase64);
-  doc.addFont("Roboto-Regular.ttf", "Roboto", "normal");
-  doc.setFont("Roboto", "normal");
+doc.addFileToVFS("Roboto-Regular.ttf", robotobase64);
+doc.addFont("Roboto-Regular.ttf", "Roboto", "normal");
 
-  doc.addFileToVFS("Roboto-Bold.ttf", robotobase64bold);
-  doc.addFont("Roboto-Bold.ttf", "Roboto", "bold");
+doc.setFont("Roboto", "normal");
+doc.setFontSize(15);
+//data
+doc.text(`${miasto} ${date1}`, 130, 50);
 
-  y = 50;
-  doc.setFontSize(18);
-  doc.setFont("Roboto", "bold");
-  centerText("PODANIE O PRZYJĘCIE DO SZKOŁY POLICEALNEJ",y); y += lineHeight;
-  doc.setFontSize(14);
-  doc.setFont("Roboto", "normal");
-  centerText(`Na zawód: ${zawodText}`,y); y += 15;
+doc.addFileToVFS("Roboto-Bold.ttf", robotobase64bold);
+doc.addFont("Roboto-Bold.ttf", "Roboto", "bold");
+doc.setFont("Roboto", "normal");
+doc.setFontSize(14);
 
+//dane
+doc.text(`${imie} ${nazwisko}`, 26, 74);
+doc.text(`${adres}`, 26, 90);
+doc.text(`${telefon}`, 26, 106);
+doc.text(`${email}`, 26, 122);
 
-  doc.setFont("Roboto", "bold");
-  centerText("DANE OSOBOWE", y); y += lineHeight;
+//podanie
+doc.text(`${zawodText}`, 65, 155);
+doc.setFontSize(12);
+doc.text(`2025/2026`, 60, 161);
 
-
-  doc.setFont("Roboto", "normal");
-  centerText(`Imię: ${imie}`,  y); y += lineHeight;
-  centerText(`Nazwisko: ${nazwisko}`, y); y += lineHeight;
-  centerText(`Płeć: ${plec}`,  y); y += lineHeight;
-  centerText(`Data urodzenia: ${dataurodzenia}`, y); y += lineHeight;
-  centerText(`PESEL: ${pesel}`, y); y += 15;
-
-
-  doc.setFont("Roboto", "bold");
-  centerText("DANE KONTAKTOWE", y); y += lineHeight;
-
-
-  doc.setFont("Roboto", "normal");
-  centerText(`Telefon: ${telefon}`, y); y += lineHeight;
-  centerText(`Email: ${email}`,  y); y += 15;
-
-
-  doc.setFont("Roboto", "bold");
-  centerText("ADRES ZAMIESZKANIA", y); y += lineHeight;
-
-
-  doc.setFont("Roboto", "normal");
-  centerText(`Adres: ${adres}`, y); y += lineHeight;
-  centerText(`Kod pocztowy: ${kodpocztowy}`, y); y += lineHeight;
-  centerText(`Miasto: ${miasto}`,  y); y += lineHeight;
+//podpis
+doc.text(`${imie} ${nazwisko}`, 26, 205.5);
 
 
   doc.setFontSize(10);
